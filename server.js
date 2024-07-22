@@ -5,14 +5,14 @@ const dotenv = require('dotenv');
 const nodemailer = require('nodemailer');
 const cors = require('cors');
 
-app.use(cors());
+
 
 // Load environment variables from .env file
 dotenv.config();
 
 const app = express();
 const port = process.env.PORT || 3030;
-
+app.use(cors());
 // Middleware to parse JSON request bodies
 app.use(bodyParser.json());
 
