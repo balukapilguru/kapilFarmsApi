@@ -3,6 +3,9 @@ const mysql = require('mysql2');
 const bodyParser = require('body-parser');
 const dotenv = require('dotenv');
 const nodemailer = require('nodemailer');
+const cors = require('cors');
+
+app.use(cors());
 
 // Load environment variables from .env file
 dotenv.config();
