@@ -14,14 +14,16 @@ const app = express();
 const port = process.env.PORT || 3030;
 app.use(cors());
 // Middleware to parse JSON request bodies
-app.use(bodyParser.json());
-
+// app.use(bodyParser.json());
+app.use(express.json())
 // Create a connection to the MySQL database
 const connection = mysql.createConnection({
   host: process.env.DB_HOST,
   user: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
-  database: process.env.DB_NAME
+  database: process.env.DB_NAME,
+  keepAliveInitialDelay: 10000,
+  enableKeepAlive: true,
 });
 
 
@@ -44,6 +46,20 @@ const transporter = nodemailer.createTransport({
   }
 });
 
+// const transporter = nodemailer.createTransport({
+//   pool: true,
+//   host: 'smtp.gmail.com',
+//   port: 465,
+//   secure: true,
+//   tls: {
+//     servername: 'smtp.gmail.com',
+//   },
+//   auth: {
+//     user: 'atbt.kapilgroup@gmail.com',
+//     pass: 'ytgn zzdr tgvm ppoy'
+//   }
+// });
+
 // Define a route for the root URL
 app.get('/', (req, res) => {
   res.send('Hello World!');
@@ -64,10 +80,11 @@ app.post('/contactform', (req, res) => {
       return res.status(500).json({ error: 'Error inserting data into the database.' });
     }
 
-    
+
     const mailOptions = {
       from: email,
-      to: "dm@kapilfarms.in",  
+      // to: "dm@kapilfarms.in",  
+      to: "balakrishna.n@teksacademy.com",
       subject: 'New Contact Form Submission',
       text: `Name: ${name}\nEmail: ${email}\nPhone Number: ${phonenumber}`
     };

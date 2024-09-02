@@ -1,0 +1,17 @@
+config:
+  target: http://localhost:3030
+  phases:
+    - duration: 5
+      arrivalRate: 5
+      rampTo: 10
+      name: Warm up
+
+scenarios:
+  - name: Test the homepage
+    flow:
+      - post:
+          url: "/contactform"
+          json:
+           name: 'balu'
+           email: 'nbkrishna32@gmail.com'
+           phonenumber: '9493991327'
