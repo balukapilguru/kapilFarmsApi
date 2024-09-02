@@ -1,8 +1,9 @@
 {
   "name": "kapilfarmsapi",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
+    "dev": "nodemon sever.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -16,6 +17,8 @@
     "express": "^4.19.2",
     "mysql": "^2.18.1",
     "mysql2": "^3.10.3",
-    "nodemailer": "^6.9.14"
+    "nodemailer": "^6.9.14",
+    "nodemon": "^3.1.4",
+    "sequelize": "^6.37.3"
   }
 }
