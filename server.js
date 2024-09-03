@@ -2,6 +2,7 @@ const express = require('express')
 const dotenv = require('dotenv')
 const nodemailer = require('nodemailer')
 const cors = require('cors')
+const morgan=require("morgan")
 const contactModel = require('./model/contact.model.js')
 // Load environment variables from .env file
 dotenv.config()
@@ -9,6 +10,7 @@ dotenv.config()
 const app = express()
 const port = process.env.PORT || 3030
 app.use(cors())
+app.use(morgan("combined"))
 // Middleware to parse JSON request bodies
 // app.use(bodyParser.json());
 app.use(express.json())
